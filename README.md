@@ -20,7 +20,7 @@ This project simulates a **Remote Desktop Protocol (RDP) brute-force attack** us
 
 ---
 
-## ⚙️ Windows Server Preparation
+## ⚙️ Commands
 
 ```powershell
 # Enable RDP
