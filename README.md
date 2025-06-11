@@ -22,7 +22,7 @@ This project simulates a **Remote Desktop Protocol (RDP) brute-force attack** us
 
 ## ⚙️ Windows Server Preparation
 
-```powershell
+\`\`\`powershell
 # Enable RDP
 Control Panel → System → Remote Settings → Enable Remote Desktop
 
@@ -32,13 +32,32 @@ Windows Defender Firewall → Inbound Rules → Enable "Remote Desktop (TCP-In)"
 # Create Test User
 net user attackerlab Password123 /add
 
+\`\`\`powershell
+🐍 Hydra Brute Force Attack from Kali Linux
+
+# Install Hydra
+sudo apt update && sudo apt install hydra
+
+# Run Brute Force Attack
+hydra -t 4 -V -f -l attackerlab -P /usr/share/wordlists/rockyou.txt rdp://<Windows_Server_IP>
+👁️ Detecting the Attack (Windows Event Viewer)
+Event ID: 4625
+
+Logon Type: 10 (RemoteInteractive)
+
+Failure Reason: Unknown username or bad password
+
+Source IP: Attacker's IP (Kali Linux)
+
 
 ## 🚨 Incident Response
 
-```powershell
+\`\`\`powershell
+
 # Disable the compromised user account
 net user attackerlab /active:no
 
 # Block attacker's IP address via PowerShell
 New-NetFirewallRule -DisplayName "Block Attacker" -Direction Inbound -RemoteAddress <Kali_IP> -Action Block
 
+\`\`\`powershell
