@@ -31,4 +31,14 @@ Windows Defender Firewall → Inbound Rules → Enable "Remote Desktop (TCP-In)"
 
 # Create Test User
 net user attackerlab Password123 /add
-'''
+
+
+## 🚨 Incident Response
+
+```powershell
+# Disable the compromised user account
+net user attackerlab /active:no
+
+# Block attacker's IP address via PowerShell
+New-NetFirewallRule -DisplayName "Block Attacker" -Direction Inbound -RemoteAddress <Kali_IP> -Action Block
+
